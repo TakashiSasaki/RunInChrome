@@ -1,8 +1,8 @@
 {
   "name": "runinchrome",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Run arbitrary javascript file in headless chrome.",
-  "main": "runInChrome.js",
+  "main": "runInChrome.nodejs",
   "scripts": {
     "test": "make"
   },
@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/TakashiSasaki/RunInChrome#readme",
   "dependencies": {
-    "myassert": "0.0.2"
-  }
+  },
+	"bin" : {
+		"runInChrome" : "./runInChrome.nodejs"
+	}
 }
