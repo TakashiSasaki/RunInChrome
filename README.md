@@ -2,6 +2,11 @@
 
 Run arbitrary JavaScript file in the Runtime of headless Chrome.
 
+# Installation
+```
+npm install -g runinchrome
+```
+
 ## Prerequisits
 ```
   sudo apt-get update; \
