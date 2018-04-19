@@ -12,12 +12,20 @@ var x = (async function() {
   }//launchChrome
 
   const chrome = await launchChrome();
+  console.log(Object.prototype.toString.apply(chrome));
+	console.log(chrome);
   const protocol = await CDP({
     port: chrome.port
   });
-
+	console.log(Object.prototype.toString.apply(protocol));
   console.log(JSON.stringify(Object.keys(protocol)));
-  chrome.kill();
+	protocol.Runtime.enable();
+
+	const result = await protocol.Runtime.evaluate({
+		expression: "new Date();"
+	});
+	console.log("result = " + result.result);
+	chrome.kill();
   // ALL FOLLOWING CODE SNIPPETS HERE
 })();
 
