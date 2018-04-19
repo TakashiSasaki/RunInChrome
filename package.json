@@ -1,6 +1,6 @@
 {
   "name": "runinchrome",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "description": "Run arbitrary javascript file in headless chrome.",
   "main": "runInChrome.nodejs",
   "scripts": {
@@ -24,6 +24,6 @@
   "dependencies": {
   },
 	"bin" : {
-		"runInChrome" : "./runInChrome.nodejs"
+		"runinchrome" : "./runInChrome.nodejs"
 	}
 }
