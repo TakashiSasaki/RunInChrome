@@ -1,12 +1,17 @@
-#!/usr/local/bin/node
+#!/usr/bin/env node
 
 const chromeLauncher = require("chrome-launcher");
 const CDP = require("chrome-remote-interface");
 const fs = require("fs");
 
 const scriptPath = process.argv[2];
+if(typeof scriptPath !== "string") {
+  console.error("no script");
+  process.exit(-1);
+}//if
+
 //assert.isString(scriptPath);
-console.log(scriptPath);
+//console.log(scriptPath);
 
 const promiseReadFile = new Promise(function(resolve, reject){
   fs.readFile(scriptPath, "utf8", function(err, data) {
