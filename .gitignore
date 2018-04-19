@@ -1,0 +1,4 @@
+*.swp
+*lighthouse*
+node_modules/
+
