@@ -1,6 +1,6 @@
 {
   "name": "runinchrome",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Run arbitrary javascript file in headless chrome.",
   "main": "runInChrome.nodejs",
   "scripts": {
