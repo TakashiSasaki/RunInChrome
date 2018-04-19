@@ -3,7 +3,7 @@ export NODE_PATH=/usr/local/lib/node_modules
 .PHONY: screenshot.png all
 
 all: 
-	node node.js
+	node chrome.nodejs date.js
 
 clean:
 	-rm -rf screenshot.png

@@ -1,0 +1,45 @@
+const assert = require("myassert");
+const chromeLauncher = require("chrome-launcher");
+const CDP = require("chrome-remote-interface");
+const fs = require("fs");
+
+const scriptPath = process.argv[2];
+assert.isString(scriptPath);
+console.log(scriptPath);
+
+const promiseReadFile = new Promise(function(resolve, reject){
+  fs.readFile(scriptPath, "utf8", function(err, data) {
+    if(err){
+      reject(err);
+    }//of
+    resolve(data);
+  });
+});//promiseReadFile
+
+
+async function evaluate(expression) {
+  const chrome = await chromeLauncher.launch({
+    chromeFlags: [
+      "--headless"
+    ],
+    chromePath: "chromium-browser"
+  });
+
+  const protocol = await CDP({
+    port: chrome.port
+  });
+
+  protocol.Runtime.enable();
+
+  const result = await protocol.Runtime.evaluate({
+    expression: expression
+  });
+  chrome.kill();
+  return result.result;
+};
+
+promiseReadFile
+  .then((data)=>{return data})
+  .then((data)=>{return evaluate(data);})
+  .then((result)=>{console.log(result);});
+
