@@ -9,11 +9,11 @@ $ npm install -g runinchrome
 
 ## Prerequisits
 ```
-  sudo apt-get update; \
-  sudo apt-get upgrade -y ;\
-  sudo apt-get install chromium-browser -y ;\
-  sudo npm update -g ;\
-  sudo npm install -g chrome-launcher  chrome-remote-interface
+ $ sudo apt-get update; \
+ $ sudo apt-get upgrade -y ;\
+ $ sudo apt-get install chromium-browser -y ;\
+ $ sudo npm update -g ;\
+ $ sudo npm install -g chrome-launcher  chrome-remote-interface
  ```
  See ```prepare``` target in ```Makefile``` for details.
 
