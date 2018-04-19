@@ -1,3 +1,5 @@
+const assert = require("myassert");
+
 const chromeLauncher = require("chrome-launcher");
 const CDP = require("chrome-remote-interface");
 
@@ -23,11 +25,13 @@ async function doSomething() {
     expression: "new Date();"
   });
   console.log(Object.keys(result.result));
-  console.log(result.result.className);
-  console.log(result.result.description);
+  assert.equal(result.result.className, "Date");
+  console.log("type\t\t= " + result.result.type);
+  console.log("subtype\t\t= " + result.result.subtype);
+  console.log("className\t= " + result.result.className);
+  console.log("description\t= " + result.result.description);
+  console.log("objectId\t= " + result.result.objectId);
   chrome.kill();
-
-  // ALL FOLLOWING CODE SNIPPETS HERE
 };
 
 doSomething();
