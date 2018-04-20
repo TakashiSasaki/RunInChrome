@@ -2,7 +2,7 @@ export NODE_PATH=/usr/local/lib/node_modules
 
 .PHONY: screenshot.png all date console consoleDate dateConsole
 
-all: date console consoleDate dateConsole
+all: date console consoleDate dateConsole window
 
 date:
 	node runInChrome.nodejs date.js
@@ -15,6 +15,9 @@ dateConsole:
 
 consoleDate:
 	node runInChrome.nodejs console.js date.js
+
+window:
+	node runInChrome.nodejs window.js
 
 clean:
 	-rm -rf screenshot.png *lighthouse*
