@@ -1,6 +1,6 @@
 # RunInChrome
 
-Run arbitrary JavaScript file in the Runtime of headless Chrome.
+Run arbitrary JavaScript files in the Runtime of headless Chrome.
 
 # Installation
 ```
