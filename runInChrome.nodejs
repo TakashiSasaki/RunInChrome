@@ -4,23 +4,22 @@ const chromeLauncher = require("chrome-launcher");
 const CDP = require("chrome-remote-interface");
 const fs = require("fs");
 
-const scriptPath = process.argv[2];
-if(typeof scriptPath !== "string") {
-  console.error("no script");
-  process.exit(-1);
-}//if
+const pathArray = process.argv.slice(2);
+//console.log(pathArray);
 
 //assert.isString(scriptPath);
 //console.log(scriptPath);
 
-const promiseReadFile = new Promise(function(resolve, reject){
-  fs.readFile(scriptPath, "utf8", function(err, data) {
-    if(err){
-      reject(err);
-    }//of
-    resolve(data);
+function promiseReadFile(path){
+  return new Promise(function(resolve, reject){
+    fs.readFile(path, "utf8", function(err, data) {
+      if(err){
+        reject(err);
+      }//of
+      resolve(data);
+    });
   });
-});//promiseReadFile
+}//promiseReadFile
 
 
 async function evaluate(expression) {
@@ -44,8 +43,12 @@ async function evaluate(expression) {
   return result.result;
 };
 
-promiseReadFile
-  .then((data)=>{return data})
-  .then((data)=>{return evaluate(data);})
-  .then((result)=>{console.log(result);});
+const promiseArray = pathArray.map(promiseReadFile); 
+//console.log(promiseArray);
+Promise.all(promiseArray).then(a => a.join("\n")).then(a=>evaluate(a)).then(a=>console.log(a));
+
+//promiseReadFile
+//  .then((data)=>{return data})
+//  .then((data)=>{return evaluate(data);})
+//  .then((result)=>{console.log(result);});
 

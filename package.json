@@ -1,7 +1,7 @@
 {
   "name": "runinchrome",
-  "version": "0.0.7",
-  "description": "Run arbitrary javascript file in headless chrome.",
+  "version": "0.0.8",
+  "description": "Run arbitrary javascript files in headless chrome.",
   "main": "runInChrome.nodejs",
   "scripts": {
     "test": "make"

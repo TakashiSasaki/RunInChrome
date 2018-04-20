@@ -22,7 +22,7 @@ $ npm install -g runinchrome
 ```
 new Date();
 ```
-```$ runInChrome something.js```
+```$ runinchrome something.js```
 ```
 { type: 'object',
   subtype: 'date',
@@ -30,3 +30,5 @@ new Date();
   description: 'Thu Apr 19 2018 18:07:57 GMT+0900 (DST)',
   objectId: '{"injectedScriptId":1,"id":1}' }
 ```
+You can give multiple script files. They are concatenated as the order in the command line.
+
