@@ -1,6 +1,6 @@
 {
   "name": "runinchrome",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Run arbitrary javascript files in headless chrome.",
   "main": "runInChrome.nodejs",
   "scripts": {
@@ -22,8 +22,10 @@
   },
   "homepage": "https://github.com/TakashiSasaki/RunInChrome#readme",
   "dependencies": {
+    "chrome-launcher": "latest",
+    "chrome-remote-interface": "latest"
   },
-	"bin" : {
-		"runinchrome" : "./runInChrome.nodejs"
-	}
+  "bin": {
+    "runinchrome": "./runInChrome.nodejs"
+  }
 }
