@@ -2,25 +2,29 @@ export NODE_PATH=/usr/local/lib/node_modules
 
 .PHONY: screenshot.png all date console consoleDate dateConsole
 
+.SUFFIX: .js
+
+vpath %.js sample/
+
 all: date console consoleDate dateConsole window
 
-date:
-	node runInChrome.nodejs date.js
+date: date.js
+	node runInChrome.nodejs $< 
 
-console:
-	node runInChrome.nodejs console.js
+console: console.js
+	node runInChrome.nodejs $<
 
-dateConsole:
-	node runInChrome.nodejs date.js console.js
+dateConsole: date.js console.js
+	node runInChrome.nodejs $^
 
-consoleDate:
-	node runInChrome.nodejs console.js date.js
+consoleDate: console.js date.js
+	node runInChrome.nodejs $^
 
-window:
-	node runInChrome.nodejs window.js
+window: window.js
+	node runInChrome.nodejs $^
 
 clean:
-	-rm -rf screenshot.png *lighthouse*
+	-rm -rf screenshot.png *lighthouse* *.swp
 
 screenshot.png: index.html index.css index.js
 	chromium-browser --headless --screenshot --allow-file-access-from-files index.html

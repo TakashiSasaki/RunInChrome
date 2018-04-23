@@ -1,6 +1,8 @@
 # RunInChrome
 
 Run arbitrary JavaScript files in the Runtime of headless Chrome.
+This package is not well tested in other than my environment.
+Please let me know any issues.
 
 # Installation
 ```
