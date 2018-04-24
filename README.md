@@ -53,3 +53,6 @@ https://github.com/TakashiSasaki/RunInChrome
 ### Package at npm
 https://www.npmjs.com/package/runinchrome
 
+## Changelog
+0.1.2 consider console.log
+
