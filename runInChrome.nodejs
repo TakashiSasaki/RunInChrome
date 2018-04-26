@@ -34,19 +34,23 @@ async function evaluate(expression) {
     port: chrome.port
   });
 
-  protocol.Runtime.enable();
+  await Promise.all([protocol.Runtime.enable(), protocol.Console.enable(), protocol.Page.enable(), protocol.Network.enable(), protocol.DOM.enable()]);
+
+  const log = [];
+  protocol.Console.messageAdded(x => {log.push(x.message.text)})
 
   const result = await protocol.Runtime.evaluate({
     expression: expression
   });
+  protocol.close();
   chrome.kill();
-  return result.result;
+  result.log = log;
+  return result;
 };
 
 const promiseArray = pathArray.map(promiseReadFile); 
 //console.log(promiseArray);
-Promise.all(promiseArray).then(a => a.join("\n")).then(a=>evaluate(a)).then(a=>console.log(a));
-
+Promise.all(promiseArray).then(a => a.join("\n")).then(a=>evaluate(a)).then(a=>console.log(JSON.stringify(a,undefined, 4)));
 //promiseReadFile
 //  .then((data)=>{return data})
 //  .then((data)=>{return evaluate(data);})
