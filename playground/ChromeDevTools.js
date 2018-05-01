@@ -81,6 +81,28 @@ function ChromeDebuggerPort(){
     }//for
   }//closeAllTabs
 
+  this.getDevTools = async() =>{
+    const port = await this.getPort();
+    return new Promise((resolve, reject) => {
+      CDP({port: port}, devtools => {
+        resolve(devtools);
+      }).on("error", e=> reject(e));
+    });
+  }//getDevTools
+
+  this.navigate = async(url) => {
+    const devTools = await this.getDevTools();
+    const chrome = await this.getChrome();
+    await devTools.Page.enable();
+    await devTools.Runtime.enable();
+    await devTools.Page.navigate({url: url}); 
+    return new Promise((resolve, reject)=>{
+      devTools.Page.loadEventFired(()=> {
+        resolve({chrome: chrome, devtools: devTools});
+      });
+    });//Promise
+  }//navigate
+
 }//ChromeDebuggerPort
 
 if(module.parent === null) {
@@ -88,9 +110,12 @@ if(module.parent === null) {
   x.getPort()
     .then(port => console.log("ChromeDebuggerPort.js\t: port = " + port))
     .catch(e => console.log(e));
-  x.closeAllTabs()
+  x.navigate("http://www.yahoo.co.jp")
     .then(x=>console.log(x))
     .catch(e=>console.log(e));
+  //x.closeAllTabs()
+  //  .then(x=>console.log(x))
+  //  .catch(e=>console.log(e));
 }//if
 
 module.exports = ChromeDebuggerPort;
